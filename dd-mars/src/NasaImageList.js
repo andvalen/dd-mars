@@ -5,7 +5,7 @@ import NasaImage from "./NasaImage";
 let _id = 1;
 const idCounter = () => ++_id;
 
-function NasaImageList() {
+function NasaImageList({ onImageSelected }) {
   const [components, setComponents] = useState([]);
 
   return (
@@ -15,9 +15,8 @@ function NasaImageList() {
         flexDirection: "column",
         border: `1px solid black`,
         background: "lightgray",
-        borderRadius: 3,
-        margin: 10,
         padding: 10,
+        borderRadius: 3,
         minHeight: 200,
         minWidth: 300,
       }}
@@ -26,7 +25,10 @@ function NasaImageList() {
         <span
           onClick={() => {
             setComponents([
-              <NasaImage key={`NasaImage${idCounter()}`} />,
+              <NasaImage
+                key={`NasaImage${idCounter()}`}
+                onImageSelected={onImageSelected}
+              />,
               ...components,
             ]);
           }}
