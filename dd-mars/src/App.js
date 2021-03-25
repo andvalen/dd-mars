@@ -1,10 +1,10 @@
 import "./App.css";
-import NasaImage from "./NasaImage";
+import NasaImageList from "./NasaImageList";
 
 function App() {
   return (
     <div className="App">
-      <NasaImage />
+      <NasaImageList />
     </div>
   );
 }
