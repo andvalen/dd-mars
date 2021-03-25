@@ -11,20 +11,26 @@ function NasaImageList() {
   return (
     <div
       style={{
-        width: 400,
+        display: "inline-flex",
+        flexDirection: "column",
+        border: `1px solid black`,
+        background: "lightgray",
+        borderRadius: 3,
+        margin: 10,
+        padding: 10,
       }}
     >
-      <pre>
+      <div style={{ marginBottom: 10 }}>
         <span
           onClick={() => {
             setComponents([
-              ...components,
               <NasaImage key={`NasaImage${idCounter()}`} />,
+              ...components,
             ]);
           }}
           style={{
             fontSize: 24,
-            background: "green",
+            background: "purple",
             color: "white",
             width: 32,
             height: 32,
@@ -37,9 +43,9 @@ function NasaImageList() {
         >
           +
         </span>
+      </div>
 
-        {components}
-      </pre>
+      {components}
     </div>
   );
 }

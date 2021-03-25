@@ -42,15 +42,10 @@ function NasaImage() {
   }, []);
 
   return (
-    <div
-      style={{
-        width: 400,
-      }}
-    >
-      <pre>
-        <img src={data?.url} style={{ maxWidth: "100%" }} />
-      </pre>
-    </div>
+    <img
+      src={data?.url}
+      style={{ maxWidth: "100%", width: 300, marginBottom: 10 }}
+    />
   );
 }
 
