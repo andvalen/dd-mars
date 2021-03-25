@@ -25,7 +25,7 @@ const getRandomDate = () => {
   return formatDate(new Date(start + r));
 };
 
-function NasaImage() {
+function NasaImage({ onImageSelected }) {
   const [data, setData] = useState(null);
 
   useEffect(async () => {
@@ -37,6 +37,8 @@ function NasaImage() {
 
     const body = await data.json();
 
+    onImageSelected(body);
+
     setData(body);
   }, []);
 
@@ -45,8 +47,16 @@ function NasaImage() {
       {!data && <MuskSpinner />}
       {!!data && (
         <img
+          onClick={() => {
+            onImageSelected(data);
+          }}
           src={data?.url}
-          style={{ maxWidth: "100%", width: 300, marginBottom: 10 }}
+          style={{
+            maxWidth: "100%",
+            width: 300,
+            marginBottom: 10,
+            cursor: "pointer",
+          }}
         />
       )}
     </div>
