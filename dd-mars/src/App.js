@@ -1,66 +1,26 @@
-import { useState } from "react";
 import "./App.css";
-import NasaImageList from "./NasaImageList";
+import SpaceView from "./SpaceView";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+const Button = (props) => (
+  <Link style={{ padding: 10, cursor: "pointer" }} {...props} />
+);
 
 function App() {
-  const [mainImage, setMainImage] = useState(null);
-  const [showAllText, setShowAllText] = useState(false);
-
-  const onImageSelected = (body) => {
-    setMainImage(body);
-    setShowAllText(false);
-  };
-
   return (
-    <div
-      className="App"
-      style={{
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "stretch",
-        width: "100%",
-        padding: 10,
-        boxSizing: "border-box",
-      }}
-    >
-      <div
-        style={{
-          flexBasis: "100%",
-          flexShrink: 1,
-          marginRight: 10,
-          border: `1px solid black`,
-          background: "lightgray",
-          padding: 10,
-          borderRadius: 3,
-          minHeight: 300,
-        }}
-      >
-        {!!mainImage && (
-          <>
-            <h2>{mainImage.title}</h2>
-            <img src={mainImage.hdurl} style={{ maxWidth: "100%" }} />
-            <div>
-              {!!showAllText && <span>{mainImage.explanation}</span>}
-              {!showAllText && mainImage.explanation.length > 100 && (
-                <>
-                  <span>{mainImage.explanation.slice(0, 100).trim()}</span>
-                  {"... "}
-                  <span
-                    onClick={() => {
-                      setShowAllText(true);
-                    }}
-                    style={{ color: "purple" }}
-                  >
-                    {"vis hele teksten"}
-                  </span>
-                </>
-              )}
-            </div>
-          </>
-        )}
-      </div>
-
-      <NasaImageList onImageSelected={onImageSelected} />
+    <div className="App">
+      <Router>
+        <div style={{ display: "flex" }}>
+          <Button to="/">Home</Button>
+          <Button to="/Memes">Memes</Button>
+        </div>
+        <Switch>
+          <Route exact path="/">
+            <SpaceView />
+          </Route>
+          <Route path="/Memes">Memes</Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
