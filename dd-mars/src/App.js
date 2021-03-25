@@ -1,5 +1,6 @@
 import "./App.css";
 import SpaceView from "./SpaceView";
+import Memes from "./Memes";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const Button = (props) => (
@@ -15,10 +16,8 @@ function App() {
           <Button to="/Memes">Memes</Button>
         </div>
         <Switch>
-          <Route exact path="/">
-            <SpaceView />
-          </Route>
-          <Route path="/Memes">Memes</Route>
+          <Route exact path="/" component={() => <SpaceView />}></Route>
+          <Route path="/Memes" component={() => <Memes />} />
         </Switch>
       </Router>
     </div>
