@@ -4,9 +4,11 @@ import NasaImageList from "./NasaImageList";
 
 function App() {
   const [mainImage, setMainImage] = useState(null);
+  const [showAllText, setShowAllText] = useState(false);
 
   const onImageSelected = (body) => {
     setMainImage(body);
+    setShowAllText(false);
   };
 
   return (
@@ -34,7 +36,27 @@ function App() {
         }}
       >
         {!!mainImage && (
-          <img src={mainImage.hdurl} style={{ maxWidth: "100%" }} />
+          <>
+            <h2>{mainImage.title}</h2>
+            <img src={mainImage.hdurl} style={{ maxWidth: "100%" }} />
+            <div>
+              {!!showAllText && <span>{mainImage.explanation}</span>}
+              {!showAllText && mainImage.explanation.length > 100 && (
+                <>
+                  <span>{mainImage.explanation.slice(0, 100).trim()}</span>
+                  {"... "}
+                  <span
+                    onClick={() => {
+                      setShowAllText(true);
+                    }}
+                    style={{ color: "purple" }}
+                  >
+                    {"vis hele teksten"}
+                  </span>
+                </>
+              )}
+            </div>
+          </>
         )}
       </div>
 

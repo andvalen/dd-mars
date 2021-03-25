@@ -47,10 +47,11 @@ function NasaImage({ onImageSelected }) {
       {!data && <MuskSpinner />}
       {!!data && (
         <img
+          title={data.title}
           onClick={() => {
             onImageSelected(data);
           }}
-          src={data?.url}
+          src={data.url}
           style={{
             maxWidth: "100%",
             width: 300,
