@@ -34,7 +34,11 @@ function App() {
         }}
       >
         {!!mainImage && (
-          <img src={mainImage.hdurl} style={{ maxWidth: "100%" }} />
+          <>
+            <h2>{mainImage.title}</h2>
+            <img src={mainImage.hdurl} style={{ maxWidth: "100%" }} />
+            <div>{mainImage.explanation}</div>
+          </>
         )}
       </div>
 
