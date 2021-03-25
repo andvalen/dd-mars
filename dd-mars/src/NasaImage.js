@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import MuskSpinner from "./MuskSpinner";
 
 function formatDate(date) {
   var d = new Date(date),
@@ -25,7 +26,7 @@ const getRandomDate = () => {
 };
 
 function NasaImage() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
 
   useEffect(async () => {
     const data = await fetch(
@@ -36,16 +37,19 @@ function NasaImage() {
 
     const body = await data.json();
 
-    console.log(body);
-
     setData(body);
   }, []);
 
   return (
-    <img
-      src={data?.url}
-      style={{ maxWidth: "100%", width: 300, marginBottom: 10 }}
-    />
+    <div style={{ minHeight: 150 }}>
+      {!data && <MuskSpinner />}
+      {!!data && (
+        <img
+          src={data?.url}
+          style={{ maxWidth: "100%", width: 300, marginBottom: 10 }}
+        />
+      )}
+    </div>
   );
 }
 

@@ -18,6 +18,8 @@ function NasaImageList() {
         borderRadius: 3,
         margin: 10,
         padding: 10,
+        minHeight: 200,
+        minWidth: 300,
       }}
     >
       <div style={{ marginBottom: 10 }}>
